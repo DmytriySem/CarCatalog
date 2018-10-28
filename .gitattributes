@@ -1,4 +1,5 @@
 CarsCatalog/CarCatalog/Scripts/* linguist-vendored
+CarsCatalog/CarCatalog/Content/* linguist-vendored
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
