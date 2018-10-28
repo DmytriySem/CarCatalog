@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CarCatalog.Models.BrandViewModel>
+@using CarCatalog.Helpers
+
+@{
+    ViewBag.Title = "Brands";
+}
+
+<h2>BRANDS</h2>
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog modal-sm">
+    </div>
+</div>
+
+<div class="container">
+    @foreach (var item in @Model)
+    {
+        <div class="col-md-3 col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">@item.Name</h4>
+                </div>
+                <div class="card-body">
+                    <a href="@Url.Action("Models", "Model", new { brandId = item.Id })" class="col-md-12 text-center">
+                        @Html.GetImageByte(item.Photo)
+                    </a>
+                </div>
+                <div class="card-footer">
+                    @Html.ActionLink("Edit", "EditBrand", "Brand", new { id = item.Id }, new { @class = "viewDialogEditBrand btn btn-success col-md-6", data_dialog_title = "Edit BRAND" })
+                    @Html.ActionLink("Delete", "RemoveBrand", "Brand", new { id = item.Id, brandName = item.Name }, new { @class = "viewDialogRemoveBrand btn btn-danger col-md-6", data_dialog_title = "Remove BRAND" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row">
+    @Html.ActionLink("Add New Brand", "AddNewBrand", "Brand", new { @class = "viewDialogAddBrand btn btn-primary" })
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/brandDialog")
+}

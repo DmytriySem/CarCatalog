@@ -1,0 +1,55 @@
+﻿/*SelectQuantities*/
+#divSelect{text-align:right; margin-bottom:20px;}
+#divSelect #select{margin-right: 10px; width:100px;}
+
+/*TreeASide*/
+ul {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    color: chocolate;
+}
+.data-brand-tree{color: mediumseagreen;}
+.data-model-tree{color: orange;}
+#filter{margin-top:20px;}
+#filter > div{float: left;}
+#filter > div > .data-text{float:left;}
+.data-text > p {
+    color: chocolate;
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#filter > div > .data-drop-list{float:right;position:relative;}
+
+/*Filter*/
+.col-md-12 > div > div{padding:0px;}
+#amount{text-align:center;}
+input#amount{text-align:center; width:170px;}
+#slider{display:inline-block; text-align:center; width: 230px; margin-left: 14px; margin-top:10px;}
+#date>input#datepicker{text-align:center; width:100%; font-weight:bold;}
+#reset{text-align:center;}
+.data-reset{text-align:center;}
+
+/*Tile*/
+.div-tile-row {
+    display: flex;
+    flex-direction: row;
+}
+.div-tile-cell{margin:10px; width: 100%;}
+.div-data{position:absolute; bottom:0; margin-left: 10px;}
+.div-tile{
+    position:relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 500px; 
+    width: 100%;
+}
+img{width: 130px; height: 100px;}
+h5{font-weight: bold; font-size: 15px; color: orange;}
+h5 > span{color: mediumseagreen;}
+#headerTile{display:flex;}
+#divSelect{margin:auto;}
+.data-date-price{font-size:18px; color:#ff0000;}
+.data-date-price>span{font-size:15px; color:#9ca8ea;}
+
+.col-md-12, .col-md-6{padding-left:0px; padding-right:0px; margin-top:15px;}

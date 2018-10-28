@@ -1,0 +1,103 @@
+﻿@model CarCatalog.Models.CatalogViewModel
+@using CarCatalog.Helpers
+
+@{
+    List<SelectListItem> listColors = ViewBag.ListColors;
+    List<SelectListItem> listEngines = ViewBag.VolEngines;
+}
+
+@Styles.Render("~/Content/Tile")
+
+<div class="col-md-3">
+    <div id="jstree" class="col-md-12">
+        <ul>
+            <li class="data-all-tree">
+                ALL
+                <ul>
+                    @for (int i = 0; i < Model.Brands.Count(); i++)
+                    {
+                        <li class="data-brand-tree">
+                            @Model.Brands[i].Name
+                            <ul>
+                                @for (int j = 0; j < Model.Brands[i].Models.Count(); j++)
+                                {
+                                    <li class="data-model-tree">
+                                        @Model.Brands[i].Models[j].Name
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="filter" class="col-md-12">
+        <div class="col-md-12">
+            <div class="data-text">
+                <p>COLORS: </p>
+            </div>
+            <div class="data-drop-list">
+                @Html.DropDownList("COLORS", listColors, new { @id = "colorsSelect" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="data-text">
+                <p>VOLUME ENGINES: </p>
+            </div>
+            <div class="data-drop-list">
+                @Html.DropDownList("VOLUME_ENGINES", listEngines, new { @id = "volEngineSelect" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-4 data-text">
+                <p>PRICES: </p>
+            </div>
+            <div class="col-md-8">
+                <label>
+                    <input type="text" id="amount" readonly />
+                </label>
+            </div>
+        </div>
+
+        <div id="slider" class="col-md-12"></div>
+
+        <div class="col-md-12">
+            <div class="col-md-4 data-text">
+                <p>DATE: </p>
+            </div>
+            <div id="date" class="col-md-8">
+                <input id="datepicker" type="text">
+            </div>
+        </div>
+
+        <div class="col-md-12 data-reset">
+            <button id="reset" type="button" class="btn-success">RESET</button>
+        </div>
+    </div>
+</div>
+<div id="headerTile" class="col-md-9">
+    <div class="col-md-10">
+        <h2 id="tileName"></h2>
+    </div>
+    <div id="divSelect" class="col-md-2">
+        <select id="select">
+            @{
+                string select = String.Empty;
+            }
+            @for (int i = 1; i < 11; i++)
+            {
+                select = i == 5 ? "selected" : "";
+                <option value=@i @select> @i.ToString() </option>;
+
+            }
+            <text>select</text>
+        </select>
+    </div>
+</div>
+<div id="findCars" class="col-md-9">
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Tile")
+}

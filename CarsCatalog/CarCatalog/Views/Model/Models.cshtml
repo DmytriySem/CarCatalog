@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CarCatalog.Models.ModelViewModel>
+@using CarCatalog.Helpers
+
+@{
+    ViewBag.Title = "Models";
+
+    bool noModelsFlag = Model.Count() == 0 ? true : false;
+
+    string brandName = noModelsFlag ? ViewBag.BrandName : Model.First().Brand.Name;
+    byte[] brandPhoto = noModelsFlag ? ViewBag.BrandPhoto : Model.First().Brand.Photo;
+}
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog modal-sm">
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="col-md-3">
+        @Html.GetImageByte(@brandPhoto)
+    </div>
+    <div class="col-md-9">
+        <h2>@brandName</h2>
+    </div>
+</div>
+
+<div class="container">
+    @foreach (var item in @Model)
+    {
+        if (item != null)
+        {
+            <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">@item.Name</h4>
+                    </div>
+                    <div class="card-body">
+                        <a href="@Url.Action("Cars", "Car", new { modelId = item.Id })" class="col-md-12 text-center">
+                            @Html.GetImageString(item.PhotoUrl)
+                        </a>
+                    </div>
+                    <div class="card-footer data-space-between">
+                        @Html.ActionLink("Edit", "EditModel", "Model", new { id = item.Id }, new { @class = "viewDialogEditModel btn btn-success col-md-6", data_dialog_title = "Edit MODEL" })
+                        @Html.ActionLink("Delete", "RemoveModel", "Model", new { id = item.Id, modelName = item.Name }, new { @class = "viewDialogRemoveModel btn btn-danger col-md-6", data_dialog_title = "Remove MODEL" })
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<div class="row">
+    @Html.ActionLink("Add New Model", "AddNewModel", "Model", new { @class = "viewDialogAddModel btn btn-primary" })
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/modalDialog")
+}

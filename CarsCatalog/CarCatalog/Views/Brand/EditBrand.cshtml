@@ -1,0 +1,36 @@
+﻿@model CarCatalog.Models.BrandViewModel
+@using CarCatalog.Helpers
+
+@using (Html.BeginForm("EditBrand", "Brand", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>
+                Edit @Html.GetImageByte(Model.Photo)
+            </h3>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" value="@Model.Id" name="Id" />
+            <div>
+                @Html.LabelFor(p => p.Name)
+                @Html.EditorFor(p => p.Name)
+            </div>
+            <div>
+                <div class="editor-label">Image:</div>
+                <div class="editor-field">
+                    <input type="file" name="uploadImage" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="button" value="Cancel" class="close" data-dismiss="modal" />
+                <input type="submit" value="Save" class="close" />
+            }
+        </div>
+    </div>
+
+
+}

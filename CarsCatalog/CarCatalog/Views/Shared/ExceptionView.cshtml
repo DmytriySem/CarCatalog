@@ -1,0 +1,27 @@
+﻿<div class="modal-content">
+    <div class="modal-header" data-brand-model-name="@ViewBag.PropertyException" data-brand-id="@ViewBag.BrandId">
+        <h3>@ViewBag.PropertyException</h3>
+    </div>
+    <div class="modal-body">
+        <h3>
+            @Html.Raw(ViewBag.MessageException)
+        </h3>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            function redirect() {
+                var name = $("[data-brand-model-name]").attr("data-brand-model-name");
+                if (name == "Model") {
+                    window.location.replace("/Model/Models/?brandId=" + $("[data-brand-id]").attr("data-brand-id"));
+                }
+                else {
+                    window.location.replace("/Brand/Index");
+                }                
+            }
+            setTimeout(redirect, 2000);
+        });
+    </script>
+}

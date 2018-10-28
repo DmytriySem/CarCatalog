@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("AddNewBrand", "Brand", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>New brand:</h3>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="modal-body">
+                <div>
+                    @Html.Label("Name")
+                    @Html.TextBox("name", null, new { autofocus = "autofocus" })
+                </div>
+                <div>
+                    <div class="editor-label">Image:</div>
+                    <div class="editor-field">
+                        <input type="file" name="uploadImage" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" value="Cancel" class="close" data-dismiss="modal" />
+                <input type="submit" value="Add" class="close" />
+            </div>
+        }
+    </div>
+
+}

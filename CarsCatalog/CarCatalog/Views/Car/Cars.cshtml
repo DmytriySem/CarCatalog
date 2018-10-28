@@ -1,0 +1,45 @@
+﻿@model CarCatalog.Models.CarViewModel
+@using CarCatalog.Helpers
+
+@{
+    ViewBag.Title = "Cars";
+    string[] colors = ViewBag.Colors;
+    string[] volEngines = ViewBag.VolEngines;
+}
+
+<h2>Cars</h2>
+
+<div col-md-12>
+    <div class="col-md-3">
+        <div class="col-md-12 text-center">
+            <a id="modelsLink" title="Models" href="@Url.Action("Models", "Model", new { brandId = Model.BrandId })">
+                @Html.GetImageByte((byte[])ViewBag.BrandPhoto)
+            </a>
+        </div>
+        <div class="col-md-12 text-center" style="margin-top:10px;">
+            @Html.GetImageString((string)ViewBag.ModelPhoto)
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h3>@ViewBag.ModelName</h3>
+        <div class="data-center">
+            <table id="jqg"></table>
+        </div>
+        <div id="jpager"></div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        let autoCompleteUrl = '@Url.Action("GetCars", new { modelId = Model.ModelId })';
+
+        let createUrl = '@Url.Action("Create")';
+        let deleteUrl = '@Url.Action("Delete")';
+        let editUrl = '@Url.Action("Edit")';
+
+        let colorsList = "@Html.CreateSelectList(colors)";
+        let volEnginesList = "@Html.CreateSelectList(volEngines)";
+
+    </script>
+    @Scripts.Render("~/bundles/grid")
+}
